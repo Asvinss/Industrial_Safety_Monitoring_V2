@@ -1,0 +1,215 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Industrial Safety Monitor API",
+    "description": "API collection for testing the Industrial Safety Monitor application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Login to get authentication token"
+          },
+          "response": []
+        }
+      ],
+      "description": "Authentication endpoints"
+    },
+    {
+      "name": "AI Configuration",
+      "item": [
+        {
+          "name": "Get AI Config",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai-config",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai-config"]
+            },
+            "description": "Get all AI model configurations"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Model Path",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"modelType\": \"ppeDetection\",\n    \"newPath\": \"/custom/path/to/ppe-detection\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ai-config/model-path",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai-config", "model-path"]
+            },
+            "description": "Update the path for a specific AI model"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Model Threshold",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"modelType\": \"ppeDetection\",\n    \"threshold\": 0.85\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/ai-config/threshold",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai-config", "threshold"]
+            },
+            "description": "Update the detection threshold for a specific AI model"
+          },
+          "response": []
+        },
+        {
+          "name": "Toggle Model Enabled",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ai-config/ppeDetection/toggle",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "ai-config", "ppeDetection", "toggle"]
+            },
+            "description": "Toggle the enabled status for a specific AI model"
+          },
+          "response": []
+        }
+      ],
+      "description": "AI model configuration endpoints"
+    },
+    {
+      "name": "Cameras",
+      "item": [
+        {
+          "name": "Get All Cameras",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/cameras",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cameras"]
+            },
+            "description": "Get all cameras"
+          },
+          "response": []
+        }
+      ],
+      "description": "Camera management endpoints"
+    },
+    {
+      "name": "Violations",
+      "item": [
+        {
+          "name": "Get All Violations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/violations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "violations"]
+            },
+            "description": "Get all violation reports"
+          },
+          "response": []
+        }
+      ],
+      "description": "Violation management endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
